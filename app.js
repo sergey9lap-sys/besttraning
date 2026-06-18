@@ -37,7 +37,7 @@
       heroTitleLines = splitTitle.lines.length ? splitTitle.lines : [heroTitle];
     }
 
-    gsap.set(".section:not(.hero) .reveal, .hero .brand-mark, .hero .eyebrow, .hero__lead, .hero__meta, .hero .button", {
+    gsap.set(".section:not(.hero) .reveal, .hero .hero-logos, .hero .eyebrow, .hero__lead, .hero__meta, .hero .button", {
       opacity: 0,
       y: 28,
     });
@@ -64,7 +64,7 @@
     });
 
     heroTimeline
-      .to(".hero .brand-mark, .hero .eyebrow", {
+      .to(".hero .hero-logos, .hero .eyebrow", {
         opacity: 1,
         y: 0,
         duration: 0.68,
