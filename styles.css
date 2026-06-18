@@ -1584,7 +1584,21 @@ input:focus-visible {
 
   #situations-title {
     max-width: 100%;
-    font-size: clamp(2.7rem, 12vw, 4.1rem);
+    font-size: clamp(2.25rem, 10vw, 3.15rem);
+    line-height: 0.98;
+  }
+
+  #situations-title span:first-child::after {
+    content: " эти";
+  }
+
+  #situations-title span:nth-child(2) {
+    font-size: 0;
+  }
+
+  #situations-title span:nth-child(2)::before {
+    content: "ситуации?";
+    font-size: clamp(2.25rem, 10vw, 3.15rem);
   }
 
   .hero__meta span {
@@ -1613,8 +1627,8 @@ input:focus-visible {
 
   .learn-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding-left: 18px;
+    gap: 0;
+    padding-left: 34px;
   }
 
   .audience-card {
@@ -1636,11 +1650,80 @@ input:focus-visible {
   }
 
   .program-line {
+    display: block;
+    top: 22px;
+    left: 0;
+    width: 28px;
+    height: calc(100% - 44px);
+    transform: none;
+    transform-origin: 50% 0;
+  }
+
+  .program-line__segment {
+    display: none;
+  }
+
+  .program-line::before,
+  .program-line::after {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    border-radius: 999px;
+  }
+
+  .program-line::before {
+    background: rgba(170, 170, 255, 0.24);
+  }
+
+  .program-line::after {
+    background: linear-gradient(180deg, var(--lavender), rgba(190, 139, 205, 0.68));
+    box-shadow: 0 0 22px rgba(170, 170, 255, 0.18);
+    transform: scaleY(var(--program-mobile-line-scale, 1));
+    transform-origin: 50% 0;
+  }
+
+  .program-node {
     display: none;
   }
 
   .learn-card p {
     padding-right: 0;
+  }
+
+  .learn-card,
+  .learn-card--two,
+  .learn-card--three {
+    --program-node-opacity: 1;
+    --program-node-scale: 1;
+    min-height: auto;
+    padding: 12px 0 34px 18px;
+  }
+
+  .learn-card::after {
+    content: "";
+    position: absolute;
+    left: -31px;
+    top: 18px;
+    width: 15px;
+    height: 15px;
+    border: 2px solid rgba(250, 249, 248, 0.78);
+    border-radius: 50%;
+    background: var(--lavender);
+    box-shadow:
+      0 0 0 6px rgba(170, 170, 255, 0.12),
+      0 0 18px rgba(170, 170, 255, 0.42);
+    opacity: var(--program-node-opacity, 1);
+    transform: scale(var(--program-node-scale, 1));
+    transform-origin: 50% 50%;
+  }
+
+  .learn-card::before {
+    top: 2px;
+    right: 2px;
+    font-size: clamp(4rem, 25vw, 6.4rem);
   }
 
   .learn-index,
@@ -1650,7 +1733,14 @@ input:focus-visible {
 
   .learn-kicker,
   .learn-card--two .learn-kicker {
-    margin-bottom: 28px;
+    margin-bottom: 18px;
+  }
+
+  .learn-card p,
+  .learn-card--three p {
+    max-width: 100%;
+    font-size: clamp(0.98rem, 4vw, 1.08rem);
+    line-height: 1.52;
   }
 
   .audience-card h3 {
@@ -1658,14 +1748,76 @@ input:focus-visible {
   }
 
   .problem-board {
+    --board-mobile-line-scale: 1;
     display: grid;
     min-height: auto;
-    gap: 16px;
-    padding: 18px;
+    gap: 18px;
+    padding: 22px 16px 22px 44px;
+    overflow: visible;
   }
 
   .board-lines {
     display: none;
+  }
+
+  .problem-board::after {
+    inset: 12px;
+  }
+
+  .problem-board::before {
+    opacity: 0.32;
+  }
+
+  .problem-board .problem-card::after {
+    content: attr(data-mobile-step);
+    position: absolute;
+    left: -35px;
+    top: 22px;
+    z-index: 4;
+    width: 22px;
+    height: 22px;
+    border: 2px solid rgba(250, 249, 248, 0.86);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--paper);
+    background: var(--plum);
+    box-shadow:
+      0 0 0 5px rgba(170, 170, 255, 0.22),
+      0 10px 22px rgba(83, 23, 69, 0.18);
+    font-size: 0.54rem;
+    font-weight: 900;
+    letter-spacing: 0;
+  }
+
+  .problem-board .problem-card:first-of-type::after {
+    content: "01";
+  }
+
+  .problem-board .problem-card:nth-of-type(2)::after {
+    content: "02";
+  }
+
+  .problem-board .problem-card:nth-of-type(3)::after {
+    content: "03";
+  }
+
+  .problem-board .problem-card:nth-of-type(4)::after {
+    content: "04";
+  }
+
+  .problem-board .problem-card:first-of-type::before {
+    content: "";
+    position: absolute;
+    left: -25px;
+    top: 32px;
+    bottom: calc(-300% - 54px);
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--plum), rgba(170, 170, 255, 0.78));
+    box-shadow: 0 0 18px rgba(98, 59, 112, 0.16);
+    transform: scaleY(var(--board-mobile-line-scale, 1));
+    transform-origin: 50% 0;
   }
 
   .problem-card,
@@ -1677,7 +1829,7 @@ input:focus-visible {
     inset: auto;
     width: 100%;
     min-height: auto;
-    padding: 20px;
+    padding: 18px;
     transform: none;
   }
 

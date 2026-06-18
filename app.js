@@ -147,14 +147,15 @@
         note.dataset.finalRotate = finalRotate;
         gsap.set(note, {
           opacity: 0,
-          y: 24,
-          scale: 0.9,
+          y: simpleBoardAnimation ? 20 : 24,
+          scale: simpleBoardAnimation ? 0.96 : 0.9,
           rotate: finalRotate + (index % 2 === 0 ? -3 : 3),
         });
       });
 
       if (simpleBoardAnimation) {
         gsap.set(problemLines, { opacity: 0 });
+        gsap.set(problemBoard, { "--board-mobile-line-scale": 0 });
       } else {
         problemLines.forEach((line) => {
           const lineLength = line.getTotalLength();
@@ -180,15 +181,23 @@
         { opacity: 1, y: 0, scale: 1, duration: 0.72, ease: "power3.out" },
       );
 
+      if (simpleBoardAnimation) {
+        problemTimeline.to(problemBoard, {
+          "--board-mobile-line-scale": 1,
+          duration: 0.72,
+          ease: "power2.inOut",
+        }, "-=0.22");
+      }
+
       problemNotes.forEach((note, index) => {
         problemTimeline.to(note, {
           opacity: 1,
           y: 0,
           scale: 1,
           rotate: Number(note.dataset.finalRotate),
-          duration: 0.58,
-          ease: "back.out(1.16)",
-        }, index === 0 ? "-=0.2" : "+=0.04");
+          duration: simpleBoardAnimation ? 0.46 : 0.58,
+          ease: simpleBoardAnimation ? "power3.out" : "back.out(1.16)",
+        }, index === 0 ? (simpleBoardAnimation ? "-=0.18" : "-=0.2") : "+=0.04");
 
         if (!simpleBoardAnimation && problemLines[index]) {
           problemTimeline.to(problemLines[index], {
@@ -209,6 +218,8 @@
       const programNodes = gsap.utils.toArray(".program-node");
       const programChapters = gsap.utils.toArray(".program .learn-card");
       const programAction = programSection.querySelector(".center-action");
+      const programLine = programSection.querySelector(".program-line");
+      const simpleProgramAnimation = window.matchMedia("(max-width: 640px)").matches;
 
       gsap.set(programTrack, { opacity: 1, y: 0 });
       gsap.set(programHead, { opacity: 0, y: 34 });
@@ -216,8 +227,10 @@
         opacity: 0,
         y: 30,
         scale: 0.98,
-        rotateX: 8,
+        rotateX: simpleProgramAnimation ? 0 : 8,
         transformPerspective: 900,
+        "--program-node-opacity": simpleProgramAnimation ? 0 : 1,
+        "--program-node-scale": simpleProgramAnimation ? 0.55 : 1,
       });
       gsap.set(programAction, { opacity: 0, y: 24 });
       gsap.set(programNodes, {
@@ -225,14 +238,19 @@
         scale: 0.5,
         transformOrigin: "50% 50%",
       });
+      if (simpleProgramAnimation) {
+        gsap.set(programLine, { "--program-mobile-line-scale": 0 });
+      }
 
-      programSegments.forEach((segment) => {
-        const segmentLength = segment.getTotalLength();
-        gsap.set(segment, {
-          strokeDasharray: segmentLength,
-          strokeDashoffset: segmentLength,
+      if (!simpleProgramAnimation) {
+        programSegments.forEach((segment) => {
+          const segmentLength = segment.getTotalLength();
+          gsap.set(segment, {
+            strokeDasharray: segmentLength,
+            strokeDashoffset: segmentLength,
+          });
         });
-      });
+      }
 
       const programTimeline = gsap.timeline({
         scrollTrigger: {
@@ -242,14 +260,60 @@
         },
       });
 
-      programTimeline
-        .to(programHead, {
+      programTimeline.to(programHead, {
           opacity: 1,
           y: 0,
           duration: 0.72,
           ease: "power3.out",
-        })
-        .to(programNodes[0], {
+        });
+
+      if (simpleProgramAnimation) {
+        programTimeline
+          .to(programLine, {
+            "--program-mobile-line-scale": 0.34,
+            duration: 0.48,
+            ease: "power2.inOut",
+          }, "-=0.08")
+          .to(programChapters[0], {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            "--program-node-opacity": 1,
+            "--program-node-scale": 1,
+            duration: 0.56,
+            ease: "power3.out",
+          }, "-=0.08")
+          .to(programLine, {
+            "--program-mobile-line-scale": 0.68,
+            duration: 0.52,
+            ease: "power2.inOut",
+          }, "-=0.06")
+          .to(programChapters[1], {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            "--program-node-opacity": 1,
+            "--program-node-scale": 1,
+            duration: 0.56,
+            ease: "power3.out",
+          }, "-=0.08")
+          .to(programLine, {
+            "--program-mobile-line-scale": 1,
+            duration: 0.52,
+            ease: "power2.inOut",
+          }, "-=0.06")
+          .to(programChapters[2], {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            "--program-node-opacity": 1,
+            "--program-node-scale": 1,
+            duration: 0.56,
+            ease: "power3.out",
+          }, "-=0.08");
+      } else {
+        programTimeline
+          .to(programNodes[0], {
           opacity: 1,
           scale: 1,
           duration: 0.36,
@@ -301,6 +365,7 @@
           duration: 0.68,
           ease: "power3.out",
         }, "-=0.18");
+      }
 
       programTimeline.to(programAction, {
         opacity: 1,
