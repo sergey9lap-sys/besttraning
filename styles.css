@@ -170,7 +170,7 @@ input {
 }
 
 .hero-logo-main {
-  height: clamp(54px, 6vw, 86px);
+  height: clamp(74px, 8vw, 118px);
 }
 
 .hero-logo-consulting {
@@ -1595,7 +1595,7 @@ input:focus-visible {
   }
 
   .hero-logo-main {
-    height: clamp(48px, 16vw, 68px);
+    height: clamp(62px, 20vw, 88px);
   }
 
   .hero-logo-consulting {
