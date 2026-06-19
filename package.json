@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "python3 -m http.server 4173",
-    "build": "rm -rf dist && mkdir -p dist && cp index.html styles.css app.js dist/ && cp -R public dist/public"
+    "build": "rm -rf dist && mkdir -p dist && cp index.html thanks.html styles.css app.js dist/ && cp -R public dist/public"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",
