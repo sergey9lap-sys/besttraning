@@ -171,7 +171,7 @@ input {
   display: flex;
   flex-wrap: wrap;
   gap: clamp(18px, 2vw, 28px);
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: clamp(8px, 1.1vw, 18px);
 }
 
@@ -183,11 +183,12 @@ input {
 }
 
 .hero-logo-main {
-  height: clamp(76px, 5.6vw, 96px);
+  height: clamp(64px, 4.8vw, 82px);
 }
 
 .hero-logo-training {
   height: clamp(36px, 4vw, 52px);
+  margin-top: clamp(8px, 0.62vw, 11px);
 }
 
 .eyebrow,
@@ -1767,11 +1768,12 @@ input:focus-visible {
   }
 
   .hero-logo-main {
-    height: clamp(58px, 17vw, 76px);
+    height: clamp(52px, 15vw, 66px);
   }
 
   .hero-logo-training {
     height: clamp(32px, 10vw, 42px);
+    margin-top: 6px;
   }
 
   .hero__title {
