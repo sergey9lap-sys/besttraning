@@ -1058,7 +1058,7 @@ input:focus-visible {
 
 .registration-widget__inner {
   width: min(760px, 100%);
-  min-height: 220px;
+  min-height: 620px;
   border: 1px solid rgba(250, 249, 248, 0.22);
   border-radius: var(--radius);
   display: grid;
@@ -1069,6 +1069,14 @@ input:focus-visible {
   text-align: center;
   background: rgba(250, 249, 248, 0.92);
   box-shadow: 0 24px 64px rgba(21, 8, 17, 0.2);
+}
+
+.registration-widget__inner iframe {
+  display: block;
+  width: 100%;
+  min-height: 620px;
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--paper);
 }
 
 .expert-grid {
