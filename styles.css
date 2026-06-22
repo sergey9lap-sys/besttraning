@@ -183,12 +183,12 @@ input {
 }
 
 .hero-logo-main {
-  height: clamp(64px, 4.8vw, 82px);
+  height: clamp(58px, 4.35vw, 74px);
 }
 
 .hero-logo-training {
   height: clamp(36px, 4vw, 52px);
-  margin-top: clamp(8px, 0.62vw, 11px);
+  margin-top: clamp(6px, 0.48vw, 8px);
 }
 
 .eyebrow,
@@ -1768,12 +1768,12 @@ input:focus-visible {
   }
 
   .hero-logo-main {
-    height: clamp(52px, 15vw, 66px);
+    height: clamp(48px, 13.6vw, 60px);
   }
 
   .hero-logo-training {
     height: clamp(32px, 10vw, 42px);
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
   .hero__title {
