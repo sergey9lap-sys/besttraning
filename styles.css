@@ -183,7 +183,7 @@ input {
 }
 
 .hero-logo-main {
-  height: clamp(74px, 8vw, 118px);
+  height: clamp(36px, 4vw, 52px);
 }
 
 .hero-logo-training {
@@ -1767,7 +1767,7 @@ input:focus-visible {
   }
 
   .hero-logo-main {
-    height: clamp(62px, 20vw, 88px);
+    height: clamp(32px, 10vw, 42px);
   }
 
   .hero-logo-training {
