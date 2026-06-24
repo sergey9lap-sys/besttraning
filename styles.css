@@ -367,8 +367,8 @@ input:focus-visible {
   position: absolute;
   z-index: 1;
   top: 50%;
-  right: max(-11vw, -170px);
-  width: min(72vw, 980px);
+  right: max(-18vw, -290px);
+  width: min(58vw, 780px);
   height: min(76vh, 700px);
   min-height: 500px;
   transform: translate3d(
@@ -388,14 +388,14 @@ input:focus-visible {
 .hero__portrait::before {
   content: "";
   position: absolute;
-  inset: -8% -8% -12% -10%;
-  background: url("./public/hero-speakers.png") 58% 54% / auto 92% no-repeat;
+  inset: -8% -5% -12% -8%;
+  background: url("./public/hero-speakers.png") 66% 56% / auto 78% no-repeat;
   filter: saturate(0.96) contrast(1.04);
   clip-path: inset(0 var(--hero-photo-reveal, 0%) 0 0);
   transform: scale(var(--hero-photo-scale, 1));
-  transform-origin: 58% 54%;
+  transform-origin: 66% 56%;
   -webkit-mask-image: radial-gradient(
-    ellipse 72% 70% at 58% 52%,
+    ellipse 72% 70% at 66% 54%,
     #000 0%,
     #000 42%,
     rgba(0, 0, 0, 0.82) 58%,
@@ -404,7 +404,7 @@ input:focus-visible {
     transparent 94%
   );
   mask-image: radial-gradient(
-    ellipse 72% 70% at 58% 52%,
+    ellipse 72% 70% at 66% 54%,
     #000 0%,
     #000 42%,
     rgba(0, 0, 0, 0.82) 58%,
@@ -417,7 +417,7 @@ input:focus-visible {
 .hero__portrait::after {
   content: "";
   position: absolute;
-  inset: -8% -8% -12% -10%;
+  inset: -8% -5% -12% -8%;
   pointer-events: none;
   background:
     linear-gradient(90deg, rgba(21, 8, 17, 0.92), rgba(83, 23, 69, 0.78) 48%, rgba(98, 59, 112, 0.18));
@@ -425,7 +425,7 @@ input:focus-visible {
   transform: translateX(var(--hero-mask-x, 0%));
   transform-origin: 100% 50%;
   -webkit-mask-image: radial-gradient(
-    ellipse 72% 70% at 58% 52%,
+    ellipse 72% 70% at 66% 54%,
     #000 0%,
     #000 42%,
     rgba(0, 0, 0, 0.82) 58%,
@@ -434,7 +434,7 @@ input:focus-visible {
     transparent 94%
   );
   mask-image: radial-gradient(
-    ellipse 72% 70% at 58% 52%,
+    ellipse 72% 70% at 66% 54%,
     #000 0%,
     #000 42%,
     rgba(0, 0, 0, 0.82) 58%,
