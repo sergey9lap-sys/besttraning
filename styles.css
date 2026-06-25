@@ -20,6 +20,7 @@
 
 * {
   box-sizing: border-box;
+  min-width: 0;
 }
 
 html {
@@ -45,7 +46,8 @@ body {
 main {
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 body::selection {
@@ -1576,10 +1578,13 @@ input:focus-visible {
     right: auto;
     top: auto;
     width: 100%;
+    max-width: 100%;
     height: 420px;
     min-height: 0;
     transform: none;
     margin-top: 28px;
+    overflow: hidden;
+    contain: paint;
     background:
       radial-gradient(circle at 52% 34%, rgba(170, 170, 255, 0.12), transparent 0 38%),
       linear-gradient(180deg, rgba(21, 8, 17, 0.02), rgba(21, 8, 17, 0.22));
@@ -1588,7 +1593,7 @@ input:focus-visible {
   }
 
   .hero__portrait::before {
-    inset: -2% -8% -10%;
+    inset: -2% 0 -10%;
     background-position: 50% 50%;
     background-size: auto 94%;
     -webkit-mask-image: radial-gradient(
@@ -1610,7 +1615,7 @@ input:focus-visible {
   }
 
   .hero__portrait::after {
-    inset: -12%;
+    inset: -8% 0 -12%;
     background:
       linear-gradient(180deg, rgba(83, 23, 69, 0.4) 0%, transparent 22%, transparent 68%, rgba(21, 8, 17, 0.72) 100%),
       linear-gradient(90deg, rgba(21, 8, 17, 0.56) 0%, transparent 24%, transparent 74%, rgba(98, 59, 112, 0.44) 100%);
@@ -1750,8 +1755,18 @@ input:focus-visible {
 }
 
 @media (max-width: 640px) {
+  html,
+  body,
+  main,
+  .section,
+  .hero {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
   .container {
     width: min(100% - 28px, 1180px);
+    max-width: calc(100vw - 28px);
   }
 
   .section {
@@ -1839,9 +1854,33 @@ input:focus-visible {
   }
 
   .learn-grid {
+    --program-mobile-line-scale: 1;
     grid-template-columns: 1fr;
     gap: 0;
     padding-left: 34px;
+  }
+
+  .learn-grid::before,
+  .learn-grid::after {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 22px;
+    bottom: 34px;
+    z-index: 0;
+    width: 2px;
+    border-radius: 999px;
+  }
+
+  .learn-grid::before {
+    background: rgba(170, 170, 255, 0.24);
+  }
+
+  .learn-grid::after {
+    background: linear-gradient(180deg, var(--lavender), rgba(190, 139, 205, 0.68));
+    box-shadow: 0 0 22px rgba(170, 170, 255, 0.18);
+    transform: scaleY(var(--program-mobile-line-scale, 1));
+    transform-origin: 50% 0;
   }
 
   .audience-card {
@@ -1863,39 +1902,11 @@ input:focus-visible {
   }
 
   .program-line {
-    display: block;
-    top: 22px;
-    left: 0;
-    width: 28px;
-    height: calc(100% - 44px);
-    transform: none;
-    transform-origin: 50% 0;
+    display: none;
   }
 
   .program-line__segment {
     display: none;
-  }
-
-  .program-line::before,
-  .program-line::after {
-    content: "";
-    position: absolute;
-    left: 13px;
-    top: 0;
-    width: 2px;
-    height: 100%;
-    border-radius: 999px;
-  }
-
-  .program-line::before {
-    background: rgba(170, 170, 255, 0.24);
-  }
-
-  .program-line::after {
-    background: linear-gradient(180deg, var(--lavender), rgba(190, 139, 205, 0.68));
-    box-shadow: 0 0 22px rgba(170, 170, 255, 0.18);
-    transform: scaleY(var(--program-mobile-line-scale, 1));
-    transform-origin: 50% 0;
   }
 
   .program-node {
@@ -1966,7 +1977,7 @@ input:focus-visible {
     min-height: auto;
     gap: 18px;
     padding: 22px 16px 22px 44px;
-    overflow: visible;
+    overflow: hidden;
   }
 
   .board-lines {

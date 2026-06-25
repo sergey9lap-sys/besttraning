@@ -220,6 +220,7 @@
       const programAction = programSection.querySelector(".center-action");
       const programLine = programSection.querySelector(".program-line");
       const simpleProgramAnimation = window.matchMedia("(max-width: 640px)").matches;
+      const programLineTarget = simpleProgramAnimation ? programTrack : programLine;
 
       gsap.set(programTrack, { opacity: 1, y: 0 });
       gsap.set(programHead, { opacity: 0, y: 34 });
@@ -239,7 +240,7 @@
         transformOrigin: "50% 50%",
       });
       if (simpleProgramAnimation) {
-        gsap.set(programLine, { "--program-mobile-line-scale": 0 });
+        gsap.set(programLineTarget, { "--program-mobile-line-scale": 0 });
       }
 
       if (!simpleProgramAnimation) {
@@ -269,7 +270,7 @@
 
       if (simpleProgramAnimation) {
         programTimeline
-          .to(programLine, {
+          .to(programLineTarget, {
             "--program-mobile-line-scale": 0.34,
             duration: 0.48,
             ease: "power2.inOut",
@@ -283,7 +284,7 @@
             duration: 0.56,
             ease: "power3.out",
           }, "-=0.08")
-          .to(programLine, {
+          .to(programLineTarget, {
             "--program-mobile-line-scale": 0.68,
             duration: 0.52,
             ease: "power2.inOut",
@@ -297,7 +298,7 @@
             duration: 0.56,
             ease: "power3.out",
           }, "-=0.08")
-          .to(programLine, {
+          .to(programLineTarget, {
             "--program-mobile-line-scale": 1,
             duration: 0.52,
             ease: "power2.inOut",
