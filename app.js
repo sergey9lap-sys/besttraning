@@ -1,5 +1,55 @@
 (function () {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cookieConsentKey = "besttrening_cookie_consent";
+
+  function initCookieNotice() {
+    try {
+      if (localStorage.getItem(cookieConsentKey) === "accepted") return;
+    } catch (error) {
+      // Storage can be disabled in private browsing modes.
+    }
+
+    const notice = document.createElement("section");
+    notice.className = "cookie-notice";
+    notice.setAttribute("role", "dialog");
+    notice.setAttribute("aria-live", "polite");
+    notice.setAttribute("aria-label", "Уведомление об использовании cookies");
+    notice.innerHTML = `
+      <button class="cookie-notice__close" type="button" aria-label="Закрыть уведомление">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </svg>
+      </button>
+      <p>
+        Продолжая использование сайта, я выражаю согласие на обработку моих персональных данных при помощи сервиса Яндекс.Метрика, подтверждаю, что ознакомлен с
+        <a href="https://agkedu.ru/personaldata" target="_blank" rel="noreferrer">политикой в отношении обработки персональных данных</a>
+        и уведомлен об использовании файлов cookies.
+      </p>
+      <button class="cookie-notice__accept" type="button">Согласен</button>
+    `;
+
+    function acceptCookies() {
+      try {
+        localStorage.setItem(cookieConsentKey, "accepted");
+      } catch (error) {
+        // If storage is unavailable, still hide the notice for this session.
+      }
+
+      notice.classList.add("cookie-notice--hidden");
+      notice.addEventListener("transitionend", () => notice.remove(), { once: true });
+      window.setTimeout(() => notice.remove(), 260);
+    }
+
+    notice.querySelector(".cookie-notice__accept").addEventListener("click", acceptCookies);
+    notice.querySelector(".cookie-notice__close").addEventListener("click", acceptCookies);
+    document.body.appendChild(notice);
+
+    requestAnimationFrame(() => {
+      notice.classList.add("cookie-notice--visible");
+    });
+  }
+
+  initCookieNotice();
 
   if (!reduceMotion && window.Lenis) {
     const lenis = new Lenis({
