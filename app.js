@@ -22,7 +22,7 @@
       </button>
       <p>
         Продолжая использование сайта, я выражаю согласие на обработку моих персональных данных при помощи сервиса Яндекс.Метрика, подтверждаю, что ознакомлен с
-        <a href="https://agkedu.ru/personaldata" target="_blank" rel="noreferrer">политикой в отношении обработки персональных данных</a>
+        <a href="https://agkedu.getcourse.ru/personaldata" target="_blank" rel="noreferrer">политикой в отношении обработки персональных данных</a>
         и уведомлен об использовании файлов cookies.
       </p>
       <button class="cookie-notice__accept" type="button">Согласен</button>
